@@ -17,5 +17,5 @@ Run the spider and save output to JSON:
 
 
 ## Notes
-This project is for educational purposes only.
-Zillow’s website structure may change, which could break the scraper. Use responsibly.
+- This project is for educational purposes only.
+- Zillow’s website structure may change, which could break the scraper. Use responsibly.
