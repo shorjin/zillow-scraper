@@ -9,12 +9,12 @@ class ZilspiderSpider(scrapy.Spider):
     urls_pool = [
         "https://www.zillow.com/floral-park-ny/",
         "https://www.zillow.com/mineola-ny/",
-        "https://www.zillow.com/new-hyde-park-ny/",
-        "https://www.zillow.com/franklin-square-ny/",
-        "https://www.zillow.com/port-washington-ny/"
-        "https://www.zillow.com/glen-oaks-queens-new-york-ny/",
-        "https://www.zillow.com/bellerose-queens-new-york-ny/",
-        "https://www.zillow.com/woodhaven-queens-new-york-ny/"
+        # "https://www.zillow.com/new-hyde-park-ny/",
+        # "https://www.zillow.com/franklin-square-ny/",
+        # "https://www.zillow.com/port-washington-ny/"
+        # "https://www.zillow.com/glen-oaks-queens-new-york-ny/",
+        # "https://www.zillow.com/bellerose-queens-new-york-ny/",
+        # "https://www.zillow.com/woodhaven-queens-new-york-ny/"
 
     ]
 
