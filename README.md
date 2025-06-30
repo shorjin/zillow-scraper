@@ -9,6 +9,10 @@ This Scrapy project crawls Zillow listings for specified locations and extracts 
 
     Extracts home details such as price, address, beds, baths, days on market, and more
 
+    Downloads all carousel images for each property using Scrapy's ImagesPipeline
+
+    Saves images organized by Zillow Property ID (zpid)
+
 
 ## Usage
 Run the spider and save output to JSON:
