@@ -1,6 +1,11 @@
 # Zillow Property Scraper
 
 This Scrapy project crawls Zillow listings for specified locations and extracts detailed property data. It filters homes by type and price.
+
+## Project Purpose:
+
+This project scrapes Zillow listings data to track housing market dynamics in near real-time. Since Zillow removes listings shortly after a house is sold, continuously collecting this data enables us to monitor price changes, time on market, and availability trends.
+By analyzing this up-to-date and historical listing information, we can gain valuable insights into the short-term behavior of the housing market. This helps me to make informed, data-driven decisions when making offers.
 ## Features
 
     Scrapes multiple Zillow neighborhood URLs
