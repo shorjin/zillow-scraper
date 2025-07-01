@@ -20,9 +20,15 @@ By analyzing this up-to-date and historical listing information, we can gain val
 
     Scrapes house sold data using a separate spider (zilsoldspider)
 
+## Pipelines
+
+- `ZillowImagesPipeline:` Saves images by zpid
+
+- `AppendJsonPipeline:` Adds only new records to output.json (for zilspider only)
+
 ## Spiders
-- zilspider — Scrapes active home listings (e.g., address, price, images).
-- zilsoldspider — Scrapes recently sold home data (e.g., sold price, date sold, and listing duration).
+- `zilspider:` Scrapes active home listings (e.g., address, price, images)
+- `zilsoldspider:`Scrapes recently sold home data (e.g., sold price, date sold, and listing duration)
 
 
 ## Usage
