@@ -1,6 +1,6 @@
 # Zillow Property Scraper
 
-This Scrapy project crawls Zillow listings for specified locations and extracts detailed property data. It filters homes by type and price.
+A Scrapy-based project to scrape Zillow real estate data for multiple neighborhoods, including both active listings and sold home details. It also downloads property images and merges data for comprehensive analysis.
 
 ## Project Purpose:
 
@@ -19,6 +19,10 @@ By analyzing this up-to-date and historical listing information, we can gain val
     Saves images organized by Zillow Property ID (zpid)
 
     Scrapes house sold data using a separate spider (zilsoldspider)
+
+    Supports incremental JSON output with a custom pipeline that appends new records to existing JSON files without duplication
+
+    Provides utilities for cleaning, merging, and analyzing scraped data using pandas, including handling missing values and date conversions
 
 ## Pipelines
 
