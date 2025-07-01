@@ -32,16 +32,20 @@ if 'home_address_sold_Page' in df2.columns:
 # Merge on zpid
 merged_df = pd.merge(df1, df2, on='zpid', how='left')
 
+mask = merged_df['sold_date'] < merged_df['posted']
+merged_df.loc[mask, ['sold_date', 'sold_price', 'daysOnZillow_soldPage']] = np.nan
+
+
 
 # clean data
 merged_df["sold_date"] = pd.to_datetime(merged_df["sold_date"], errors='coerce')
 merged_df["posted"] = pd.to_datetime(merged_df["posted"], errors='coerce')
-print(merged_df.dtypes)
+merged_df['area'] = merged_df['home_address'].apply(lambda x: x.split(',')[-2].strip())
 merged_df.loc[merged_df["sold_date"] > merged_df["posted"], "home_status"] = "SOLD"
+
 merged_df["Avg_Sqrt_listing"] = (
     merged_df["home_price"] / merged_df["home_area"]
 ).where(merged_df["home_area"] > 0).round().astype("Int64")
-merged_df['area'] = merged_df['home_address'].apply(lambda x: x.split(',')[-2].strip())
 
 
 merged_df["Avg_Sqrt_sold"] = (
@@ -70,17 +74,13 @@ condition_valid =(~merged_df['home_price'].isna()) & \
 
 
 merged_df['total_Pct_Change_price'] = np.where(
-    condition_valid & (merged_df['sold_date'] > merged_df['posted']),
+    condition_valid,
     ((merged_df['sold_price'] - merged_df['home_price']) / merged_df['home_price']) * 100,
-    np.where(
-        condition_valid & (merged_df['sold_date'] <= merged_df['posted']),
-        ((merged_df['home_price'] - merged_df['sold_price']) / merged_df['sold_price']) * 100,
-        np.nan
-    )
+    np.nan
 )
 
 
 
 
-merged_df.to_csv('merged_output.csv', index=False, encoding='utf-8')
+merged_df.to_csv(r'D:\code\Python\zillow\zillow\zillow_dash\src\merged_output.csv', index=False, encoding='utf-8')
 
