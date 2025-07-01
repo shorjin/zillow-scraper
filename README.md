@@ -66,13 +66,11 @@ streamlit run app.py
 
 This Streamlit dashboard provides interactive visualizations and analytics for Zillow real estate data, including both active listings and sold properties. It is designed to help users explore housing market trends, price distributions, and property statistics by area and over time.
 
-
-
-
-
 ## DashBoard Visualizations:
 
 ![Dashboard](readMe/1.png)
+
+![Dashboard](readMe/5.png)
 
 ![Dashboard](readMe/2.png)
 
@@ -84,7 +82,3 @@ This Streamlit dashboard provides interactive visualizations and analytics for Z
 
 - This project is for educational purposes only.
 - Zillow’s website structure may change, which could break the scraper. Use responsibly.
-  
-  
-
-

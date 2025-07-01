@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 from utils import *
+import os
+from PIL import Image
 
 # Load the dataset
 df = pd.read_csv("merged_output.csv")
@@ -16,6 +18,25 @@ st.dataframe(df)
 st.subheader("Statistics")
 selected_columns = ['daysOnMarket', 'home_price','home_area','land_area','Avg_Sqrt_listing','total_Pct_Change_price']  # Replace with your desired columns
 st.write(df[selected_columns].describe())
+
+# image part
+st.subheader("Search Images by zpid")
+search_zpid = st.text_input("Enter zpid to view images", value="")
+
+if search_zpid:
+    image_folder = f"D:/code/Python/zillow/zillow/zilscraper/images/{search_zpid}"
+    if os.path.exists(image_folder):
+        image_files = [f for f in os.listdir(image_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+        if image_files:
+            for img_file in image_files:
+                img_path = os.path.join(image_folder, img_file)
+                st.image(Image.open(img_path), caption=img_file)
+        else:
+            st.info("No images found in the folder for this zpid.")
+    else:
+        st.info("No images found for this zpid.")
+else:
+    st.info("Enter a zpid above to view images.")
 
 
 
@@ -89,7 +110,7 @@ if enable_sold_filter:
 # Apply filters
 filtered_df = df[
     (df['area'] == selected_area)
-]
+].copy()
 
 if enable_sold_filter:
     filtered_df = filtered_df[filtered_df['sold_price'].between(*sold_price_range)]
