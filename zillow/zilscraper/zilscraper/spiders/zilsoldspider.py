@@ -10,7 +10,7 @@ class ZilsoldspiderSpider(scrapy.Spider):
     # url = "https://www.zillow.com/floral-park-ny/sold/"
     urls_pool = [
         "https://www.zillow.com/floral-park-ny/sold/",
-        # "https://www.zillow.com/mineola-ny/sold/",
+        "https://www.zillow.com/mineola-ny/sold/",
         # "https://www.zillow.com/new-hyde-park-ny/sold/",
         # "https://www.zillow.com/franklin-square-ny/sold/",
         # "https://www.zillow.com/port-washington-ny/sold/",
@@ -75,7 +75,7 @@ class ZilsoldspiderSpider(scrapy.Spider):
 
             home_data = {
                 "zpid": home.get('zpid', None),
-                "home_address": home.get('address', None),
+                "home_address_sold_Page": home.get('address', None),
                 "sold_price": sold_price,
                 "sold_date": sold_date,
                 "daysOnZillow_soldPage":home['hdpData']['homeInfo'].get('daysOnZillow', None),
