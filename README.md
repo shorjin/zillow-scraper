@@ -18,13 +18,25 @@ By analyzing this up-to-date and historical listing information, we can gain val
 
     Saves images organized by Zillow Property ID (zpid)
 
+    Scrapes house sold data using a separate spider (zilsoldspider)
+
+## Spiders
+- zilspider — Scrapes active home listings (e.g., address, price, images).
+- zilsoldspider — Scrapes recently sold home data (e.g., sold price, date sold, and listing duration).
+
 
 ## Usage
-Run the spider and save output to JSON:
+Scrape current listings:
 
-    scrapy crawl zilspider -O output.json
+    scrapy crawl zilspider
+
+Scrape sold home data and export it to a JSON file:
+
+    scrapy crawl zilsoldspider -O sold_homes.json
 
 
 ## Notes
 - This project is for educational purposes only.
 - Zillow’s website structure may change, which could break the scraper. Use responsibly.
+
+
