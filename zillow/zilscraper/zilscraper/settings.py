@@ -69,6 +69,7 @@ DEFAULT_REQUEST_HEADERS = {
 #}
 ITEM_PIPELINES = {
     'zilscraper.pipelines.ZillowImagesPipeline': 1,
+     'zilscraper.pipelines.AppendJsonPipeline': 300,
 }
 IMAGES_STORE = r"D:\code\Python\zillow\zillow\zilscraper\images"
 
