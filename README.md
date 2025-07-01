@@ -8,21 +8,20 @@ This project scrapes Zillow listings data to track housing market dynamics in ne
 By analyzing this up-to-date and historical listing information, we can gain valuable insights into the short-term behavior of the housing market. This helps me to make informed, data-driven decisions when making offers.
 ## Features
 
-    Scrapes multiple Zillow neighborhood URLs
+- Scrapes multiple Zillow neighborhood URLs
 
-    Filters homes by type (SINGLE_FAMILY and MULTI_FAMILY) and price (< $1,000,000)
+- Filters homes by type (SINGLE_FAMILY and MULTI_FAMILY) and price (< $1,000,000)
 
-    Extracts home details such as price, address, beds, baths, days on market, and more
+- Extracts home details such as price, address, beds, baths, days on market, and more
 
-    Downloads all carousel images for each property using Scrapy's ImagesPipeline
+- Downloads all carousel images for each property using Scrapy's ImagesPipeline
 
-    Saves images organized by Zillow Property ID (zpid)
+- Saves images organized by Zillow Property ID (zpid)
 
-    Scrapes house sold data using a separate spider (zilsoldspider)
+- Scrapes house sold data using a separate spider (zilsoldspider)
 
-    Supports incremental JSON output with a custom pipeline that appends new records to existing JSON files without duplication
-
-    Provides utilities for cleaning, merging, and analyzing scraped data using pandas, including handling missing values and date conversions
+- Supports incremental JSON output with a custom pipeline that appends new records to existing JSON files without duplication
+- Provides utilities for cleaning, merging, and analyzing scraped data using pandas, including handling missing values and date conversions
 
 ## Pipelines
 
