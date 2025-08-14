@@ -5,6 +5,17 @@ import os
 
 class ZilspiderSpider(scrapy.Spider):
     name = "zilspider"
+    custom_settings = {
+        'USER_AGENT': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        'COOKIES_ENABLED': True,
+        'DEFAULT_REQUEST_HEADERS': {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.google.com/',
+        },
+        'DOWNLOAD_DELAY': 3,
+        'RANDOMIZE_DOWNLOAD_DELAY': True
+    }
 
     # url = "https://www.zillow.com/floral-park-ny/"
     urls_pool = [
@@ -53,14 +64,37 @@ class ZilspiderSpider(scrapy.Spider):
             if not home_price_string:  # covers None and empty string
                 continue  # skip or handle missing price
 
-            home_price = int(home_price_string.replace("$", "").replace(",", ""))
+            # home_price = int(home_price_string.replace("$", "").replace(",", ""))
+            home_price_str = home_price_string.replace("$", "").replace(",", "").strip().upper()
+
+            try:
+                if "K" in home_price_str:
+                    home_price = int(float(home_price_str.replace("K", "")) * 1_000)
+                elif "M" in home_price_str:
+                    home_price = int(float(home_price_str.replace("M", "")) * 1_000_000)
+                else:
+                    home_price = int(home_price_str)
+            except ValueError:
+                continue  # skip invalid price formats like "—" or "Contact for price"
 
 
             if home_price > 1000000:
                 continue
+#  old zillow data structure for images
+            # carousel = home.get('carouselPhotos', [])
+            # image_urls = [photo.get('url') for photo in carousel if photo.get('url')]
 
-            carousel = home.get('carouselPhotos', [])
-            image_urls = [photo.get('url') for photo in carousel if photo.get('url')]
+
+            carousel = home.get('carouselPhotosComposable', {})
+            base_url = carousel.get('baseUrl')
+            photo_data = carousel.get('photoData', [])
+
+            image_urls = []
+            if base_url and photo_data:
+                for photo in photo_data:
+                    key = photo.get('photoKey')
+                    if key:
+                        image_urls.append(base_url.replace("{photoKey}", key))
 
 
 

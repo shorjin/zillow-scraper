@@ -82,5 +82,20 @@ merged_df['total_Pct_Change_price'] = np.where(
 
 
 
-merged_df.to_csv(r'D:\code\Python\zillow\zillow\zillow_dash\src\merged_output.csv', index=False, encoding='utf-8')
+# merged_df.to_csv(r'D:\code\Python\zillow\zillow\zillow_dash\src\merged_output_new.csv', index=False, encoding='utf-8')
 
+output_csv = r'D:\code\Python\zillow\zillow\zillow_dash\src\merged_output.csv'
+
+# If merged_output.csv exists, append new data and drop duplicates
+if os.path.exists(output_csv):
+    old_df = pd.read_csv(output_csv)
+    # Concatenate old and new, then drop duplicates by zpid (keep latest)
+    combined_df = pd.concat([old_df, merged_df], ignore_index=True)
+    combined_df = combined_df.drop_duplicates(subset='zpid', keep='last')
+else:
+    combined_df = merged_df
+
+before = len(old_df) if os.path.exists(output_csv) else 0
+after = len(combined_df)
+print(f"🆕 Merge finished in total records: {after}, Newly added: {after - before}")
+combined_df.to_csv(r'D:\code\Python\zillow\zillow\zillow_dash\src\merged_output.csv', index=False, encoding='utf-8')

@@ -1,0 +1,22 @@
+Activate the virtual environment (when in /d/code/Python/zillow/zillow):
+. Scripts/activate
+
+
+Deactivate the virtual environment:
+deactivate
+
+
+Run from the zilscraper folder and scrape current listings:
+
+scrapy crawl zilspider
+
+
+Run from the zilspiderfolder, scrape sold home data and export it to a JSON file:
+
+scrapy crawl zilsoldspider -O sold_homes.json
+
+
+Run from the folder where app.py is
+cd zillow_dash/src
+
+streamlit run app.py

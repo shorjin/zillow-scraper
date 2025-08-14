@@ -6,17 +6,27 @@ import re
 
 class ZilsoldspiderSpider(scrapy.Spider):
     name = "zilsoldspider"
-
+    custom_settings = {
+        'USER_AGENT': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        'COOKIES_ENABLED': True,
+        'DEFAULT_REQUEST_HEADERS': {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.google.com/',
+        },
+        'DOWNLOAD_DELAY': 3,
+        'RANDOMIZE_DOWNLOAD_DELAY': True
+    }
     # url = "https://www.zillow.com/floral-park-ny/sold/"
     urls_pool = [
         "https://www.zillow.com/floral-park-ny/sold/",
         "https://www.zillow.com/mineola-ny/sold/",
-        # "https://www.zillow.com/new-hyde-park-ny/sold/",
-        # "https://www.zillow.com/franklin-square-ny/sold/",
-        # "https://www.zillow.com/port-washington-ny/sold/",
-        # "https://www.zillow.com/glen-oaks-queens-new-york-ny/sold/",
-        # "https://www.zillow.com/bellerose-queens-new-york-ny/sold/",
-        # "https://www.zillow.com/woodhaven-queens-new-york-ny/sold/"
+        "https://www.zillow.com/new-hyde-park-ny/sold/",
+        "https://www.zillow.com/franklin-square-ny/sold/",
+        "https://www.zillow.com/port-washington-ny/sold/",
+        "https://www.zillow.com/glen-oaks-queens-new-york-ny/sold/",
+        "https://www.zillow.com/bellerose-queens-new-york-ny/sold/",
+        "https://www.zillow.com/woodhaven-queens-new-york-ny/sold/"
 
     ]
 
